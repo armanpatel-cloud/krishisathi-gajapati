@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiSathi – Gajapati</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", "Noto Sans Oriya", sans-serif;
+            color: #193b2b;
+            background: #f7faf6;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            background: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #187343;
+        }
+
+        .logo span {
+            color: #e69b28;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #19834b;
+        }
+
+        .language-btn {
+            background: #edf6ed;
+            border: 1px solid #d7e8d7;
+            padding: 9px 15px;
+            border-radius: 8px;
+            color: #187343;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .login-btn {
+            background: #187343;
+            color: white !important;
+            padding: 10px 19px;
+            border-radius: 8px;
+        }
+
+        .hero {
+            padding: 85px 7%;
+            background: linear-gradient(110deg, #e8f5e9, #f5f9ed);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 610px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #d7eddb;
+            color: #187343;
+            padding: 7px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 55px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: #17452d;
+        }
+
+        .hero h1 span {
+            color: #259456;
+        }
+
+        .hero p {
+            color: #617568;
+            font-size: 17px;
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: #187343;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 9px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .secondary-btn {
+            display: inline-block;
+            border: 1px solid #187343;
+            color: #187343;
+            padding: 13px 23px;
+            border-radius: 9px;
+            font-weight: 700;
+        }
+
+        .hero-image {
+            width: 43%;
+            min-height: 310px;
+            border-radius: 22px;
+            background:
+                linear-gradient(rgba(15,65,35,0.12), rgba(15,65,35,0.12)),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1000") center/cover;
+            box-shadow: 0 15px 35px rgba(28,75,42,0.12);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 25px 7%;
+            background: white;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .stat h2 {
+            color: #19834b;
+            font-size: 27px;
+        }
+
+        .stat p {
+            color: #78877d;
+            font-size: 13px;
+        }
+
+        .section {
+            padding: 65px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 32px;
+            color: #17452d;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: #78877d;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #e9eee8;
+            padding: 27px;
+            border-radius: 15px;
+            transition: 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(30,80,45,0.09);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: #eaf5eb;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 9px;
+            font-size: 19px;
+        }
+
+        .service-card p {
+            color: #78877d;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .service-card a {
+            color: #19834b;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .blocks-section {
+            background: #edf5ed;
+        }
+
+        .blocks {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .block-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            border: 1px solid #e3ece2;
+        }
+
+        .block-card span {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .marketplace {
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .marketplace h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .marketplace p {
+            color: #78877d;
+            max-width: 600px;
+        }
+
+        .market-btn {
+            background: #e99b2d;
+            color: #263b29;
+            padding: 13px 20px;
+            border-radius: 9px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        footer {
+            background: #153d29;
+            color: white;
+            padding: 35px 7%;
+            text-align: center;
+        }
+
+        footer p {
+            color: #c4d5c9;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 850px) {
+            .nav-links {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-image {
+                width: 100%;
+                min-height: 240px;
+            }
+
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blocks {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .navbar {
+                padding: 14px 5%;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .nav-links {
+                width: 100%;
+                overflow-x: auto;
+                padding: 5px 0;
+            }
+
+            .hero, .section {
+                padding: 45px 5%;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                padding: 20px 3%;
+                gap: 5px;
+            }
+
+            .stat h2 {
+                font-size: 21px;
+            }
+
+            .marketplace {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo">Krishi<span>Sathi</span></a>
+
+        <nav class="nav-links">
+           <a href="#" data-translate="home">Home</a>
+            <a href="#services" data-translate="crops">Crops</a>
+            <a href="#blocks" data-translate="machinery">Machinery</a>
+            <a href="#marketplace" data-translate="marketplace">Marketplace</a>
+           <button class="language-btn" onclick="toggleLanguage()" id="languageButton" data-language-button></button>
+    ଓଡ଼ିଆ
+</button>
+            <a href="#" class="login-btn">Login / Register</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="tag">🌱 Agriculture for a better tomorrow</span>
+
+            <h1>Growing Together, <span>Growing Better.</span></h1>
+
+            <p>
+                Welcome to KrishiSathi – Gajapati.
+                Your digital farming companion for agricultural
+                information, local markets, weather updates and
+                smarter farming decisions.
+            </p>
+
+            <a href="#services" class="primary-btn">Explore Services →</a>
+            <a href="#marketplace" class="secondary-btn">Visit Marketplace</a>
+        </div>
+
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <h2>7</h2>
+            <p>Administrative Blocks</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Digital Access</p>
+        </div>
+
+        <div class="stat">
+            <h2>One Platform</h2>
+            <p>For Farming Communities</p>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="section-heading">
+            <h2>Our Agriculture Services</h2>
+            <p>Everything farmers need, brought together in one place.</p>
+        </div>
+
+        <div class="services">
+
+            <div class="service-card">
+                <div class="service-icon">🛒</div>
+                <h3>Farmer Marketplace</h3>
+                <p>Buy and sell agricultural products directly with local farmers.</p>
+                <a href="marketplace.html">Explore Marketplace →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌦️</div>
+                <h3>Live Weather</h3>
+                <p>Check weather conditions and forecasts for your area.</p>
+                <a href="weather.html">Check Weather →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧮</div>
+                <h3>Farm Calculators</h3>
+                <p>Calculate fertilizer, manure and crop input requirements.</p>
+                <a href="calculator.html">Calculate Now →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚜</div>
+                <h3>Machinery Services</h3>
+                <p>Find agricultural machinery for rental or purchase.</p>
+                <a href="machinery.html">Explore Machinery →</a>
+            </div>
+
+    
+
+            <div class="service-card">
+                <div class="service-icon">🏪</div>
+                <h3>Input Suppliers</h3>
+                <p>Discover agricultural input suppliers in Gajapati district.</p>
+                <a href="suppliers.html">Explore Suppliers →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section blocks-section" id="blocks">
+        <div class="section-heading">
+            <h2>Explore Gajapati District</h2>
+            <p>Local agricultural information for all seven blocks.</p>
+        </div>
+
+        <div class="blocks">
+    
+    <div class="block-card"><span>🌱</span>Gosani (Paralakhemundi)</div>
+    <div class="block-card"><span>🌱</span>Gumma</div>
+    <div class="block-card"><span>🌱</span>Kasinagar</div>
+    <div class="block-card"><span>🌱</span>Mohana</div>
+    <div class="block-card"><span>🌱</span>Nuagada</div>
+    <div class="block-card"><span>🌱</span>R. Udayagiri</div>
+    <div class="block-card"><span>🌱</span>Rayagada</div>
+
+        </div>
+    </section>
+
+    <section class="section" id="marketplace">
+        <div class="marketplace">
+            <div>
+                <h2>Take Your Farm Products to the Market</h2>
+                <p>
+                    Connect with buyers, display your agricultural products
+                    and explore local trading opportunities through
+                    KrishiSathi.
+                </p>
+            </div>
+
+            <a href="#" class="market-btn">Explore Marketplace →</a>
+        </div>
+    </section>
+
+    <footer>
+        <h2>🌱 KrishiSathi – Gajapati</h2>
+        <p>Connecting Farmers, Empowering Agriculture.</p>
+        <p>Designed to support the farming community of Gajapati, Odisha.</p>
+        <p>© 2026 KrishiSathi. All rights reserved.</p>
+    </footer>
+
+<script>
+let currentLanguage = localStorage.getItem("krishisathi-language") || "en";
+
+const translations = {
+    en: {
+        home: "Home",
+        services: "Services",
+        blocks: "Blocks",
+        marketplace: "Marketplace",
+        welcome: "Growing Together,",
+        better: "Growing Better.",
+        description: "Welcome to KrishiSathi – Gajapati. Your digital farming companion for agricultural information, local markets, weather updates and smarter farming decisions.",
+        explore: "Explore Services →",
+        visit: "Visit Marketplace",
+        serviceTitle: "Our Agriculture Services",
+        serviceSubtitle: "Everything farmers need, brought together in one place.",
+        footer: "Connecting Farmers, Empowering Agriculture."
+    },
+    or: {
+        home: "ମୁଖ୍ୟ ପୃଷ୍ଠା",
+        services: "ସେବା",
+        blocks: "ବ୍ଲକ୍",
+        marketplace: "ବଜାର",
+        welcome: "ଏକାଠି ବଢ଼ିବା,",
+        better: "ଉନ୍ନତି କରିବା।",
+        description: "କୃଷିସାଥୀ – ଗଜପତିକୁ ସ୍ୱାଗତ। କୃଷି ସୂଚନା, ସ୍ଥାନୀୟ ବଜାର, ପାଣିପାଗ ଏବଂ ଉନ୍ନତ ଚାଷ ପାଇଁ ଏହା ଆପଣଙ୍କ ଡିଜିଟାଲ୍ ସାଥୀ।",
+        explore: "ସେବା ଦେଖନ୍ତୁ →",
+        visit: "ବଜାର ଦେଖନ୍ତୁ",
+        serviceTitle: "ଆମର କୃଷି ସେବା",
+        serviceSubtitle: "ଚାଷୀଙ୍କ ପାଇଁ ସମସ୍ତ ଆବଶ୍ୟକ ସେବା ଗୋଟିଏ ସ୍ଥାନରେ।",
+        footer: "ଚାଷୀଙ୍କୁ ଯୋଡ଼ିବା, କୃଷିକୁ ସଶକ୍ତ କରିବା।"
+    }
+};
+
+function toggleLanguage() {
+    currentLanguage = currentLanguage === "en" ? "or" : "en";
+    localStorage.setItem("krishisathi-language", currentLanguage);
+    applyLanguage();
+}
+
+function applyLanguage() {
+    const t = translations[currentLanguage];
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        if (link.textContent.trim() === "Home" || link.textContent.trim() === "ମୁଖ୍ୟ ପୃଷ୍ଠା") link.textContent = t.home;
+        if (link.textContent.trim() === "Services" || link.textContent.trim() === "ସେବା") link.textContent = t.services;
+        if (link.textContent.trim() === "Blocks" || link.textContent.trim() === "ବ୍ଲକ୍") link.textContent = t.blocks;
+        if (link.textContent.trim() === "Marketplace" || link.textContent.trim() === "ବଜାର") link.textContent = t.marketplace;
+    });
+
+    document.querySelector(".hero h1").innerHTML =
+        t.welcome + " <span>" + t.better + "</span>";
+
+    document.querySelector(".hero-content p").textContent = t.description;
+    document.querySelector(".hero .primary-btn").textContent = t.explore;
+    document.querySelector(".hero .secondary-btn").textContent = t.visit;
+
+    document.querySelector(".section-heading h2").textContent = t.serviceTitle;
+    document.querySelector(".section-heading p").textContent = t.serviceSubtitle;
+
+    document.querySelector("footer p").textContent = t.footer;
+
+    document.getElementById("languageButton").textContent =
+        currentLanguage === "en" ? "ଓଡ଼ିଆ" : "English";
+
+    document.documentElement.lang = currentLanguage === "en" ? "en" : "or";
+}
+
+applyLanguage();
+</script>
+</body>
+</html>
+<script src="language.js"></script>
+</body>
+</html>

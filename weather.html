@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Weather | KrishiSathi Gajapati</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f8f2;
+      color: #203528;
+      line-height: 1.6;
+    }
+    header {
+      background: #176b3a;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header a { color: white; text-decoration: none; }
+    .logo { font-size: 22px; font-weight: bold; }
+    .container { width: 90%; max-width: 1000px; margin: 35px auto; }
+    .intro { text-align: center; margin-bottom: 25px; }
+    .intro h1 { color: #176b3a; font-size: 32px; margin-bottom: 8px; }
+    .intro p { color: #617267; }
+    .selector {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px #0000000d;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    select, button {
+      padding: 13px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    select { border: 1px solid #cbd8ce; min-width: 220px; }
+    button {
+      border: none;
+      background: #176b3a;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #10532c; }
+    #status { text-align: center; margin: 20px 0; color: #52675a; }
+    .weather-card {
+      display: none;
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 20px;
+      box-shadow: 0 4px 18px #0000000d;
+    }
+    .weather-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-bottom: 1px solid #e7eee8;
+      padding-bottom: 20px;
+    }
+    .weather-top h2 { color: #176b3a; }
+    .temperature { font-size: 48px; font-weight: bold; color: #176b3a; }
+    .condition { color: #637469; }
+    .details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .detail {
+      background: #f1f7f1;
+      padding: 18px;
+      border-radius: 10px;
+    }
+    .detail span { display: block; color: #647468; font-size: 14px; }
+    .detail strong { font-size: 21px; color: #176b3a; }
+    .updated { font-size: 12px; color: #718076; margin-top: 20px; }
+    .note {
+      background: #fff8e6;
+      border-left: 4px solid #e0aa35;
+      padding: 14px;
+      margin-top: 25px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #665329;
+    }
+    footer { text-align: center; padding: 25px; color: #718076; font-size: 13px; }
+    @media (max-width: 600px) {
+      .intro h1 { font-size: 26px; }
+      .temperature { font-size: 40px; }
+      .weather-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">🌱 KrishiSathi</a>
+  <a href="index.html">← Back to Home</a>
+</header>
+
+<main class="container">
+  <section class="intro">
+    <h1>Live Weather Updates</h1>
+    <p>Check weather conditions for the blocks of Gajapati district, Odisha.</p>
+  </section>
+
+  <section class="selector">
+    <select id="blockSelect">
+      <option value="Gosani">Gosani (Paralakhemundi)</option>
+      <option value="Gumma">Gumma</option>
+      <option value="Kasinagar">Kasinagar</option>
+      <option value="Mohana">Mohana</option>
+      <option value="Nuagada">Nuagada</option>
+      <option value="R. Udayagiri">R. Udayagiri</option>
+      <option value="Rayagada">Rayagada</option>
+    </select>
+    <button id="checkWeather">Check Weather</button>
+  </section>
+
+  <p id="status">Choose a block and click Check Weather.</p>
+
+  <section class="weather-card" id="weatherCard">
+    <div class="weather-top">
+      <div>
+        <h2 id="placeName">Selected Block</h2>
+        <p class="condition" id="weatherCondition">Weather condition</p>
+      </div>
+      <div class="temperature" id="temperature">--°C</div>
+    </div>
+
+    <div class="details">
+      <div class="detail">
+        <span>Feels Like</span>
+        <strong id="feelsLike">--°C</strong>
+      </div>
+      <div class="detail">
+        <span>Humidity</span>
+        <strong id="humidity">--%</strong>
+      </div>
+      <div class="detail">
+        <span>Rainfall</span>
+        <strong id="rainfall">-- mm</strong>
+      </div>
+      <div class="detail">
+        <span>Wind Speed</span>
+        <strong id="wind">-- km/h</strong>
+      </div>
+    </div>
+
+    <p class="updated" id="updated"></p>
+  </section>
+
+  <div class="note">
+    <strong>Important:</strong> Weather values are model-based estimates for the selected area, not measurements from a local weather station. Always follow official IMD warnings and local agricultural advisories before making important farming decisions.
+  </div>
+</main>
+
+<footer>
+  © 2026 KrishiSathi – Gajapati | Weather data by Open-Meteo
+</footer>
+
+<script>
+  const searchNames = {
+    "Gosani": "Paralakhemundi",
+    "Gumma": "Gumma",
+    "Kasinagar": "Kasinagar",
+    "Mohana": "Mohana",
+    "Nuagada": "Nuagada",
+    "R. Udayagiri": "R Udayagiri",
+    "Rayagada": "Rayagada"
+  };
+
+  const weatherDescriptions = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Depositing rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    61: "Slight rain",
+    63: "Moderate rain",
+    65: "Heavy rain",
+    71: "Slight snow",
+    80: "Rain showers",
+    81: "Moderate rain showers",
+    82: "Heavy rain showers",
+    95: "Thunderstorm"
+  };
+
+  async function loadWeather() {
+    const block = document.getElementById("blockSelect").value;
+    const status = document.getElementById("status");
+    const card = document.getElementById("weatherCard");
+
+    status.textContent = "Loading weather data...";
+    card.style.display = "none";
+
+    try {
+      const placeQuery = encodeURIComponent(
+        searchNames[block] + ", Odisha, India"
+      );
+
+      const geoUrl =
+        `https://geocoding-api.open-meteo.com/v1/search?name=${placeQuery}&count=10&language=en&format=json`;
+
+      const geoResponse = await fetch(geoUrl);
+      if (!geoResponse.ok) throw new Error("Location search failed.");
+
+      const geoData = await geoResponse.json();
+      const locations = (geoData.results || []).filter(
+        item => item.country_code === "IN" &&
+                (item.admin1 || "").toLowerCase().includes("odisha")
+      );
+
+      if (locations.length === 0) {
+        throw new Error(
+          "This block could not be located automatically. Please try another block."
+        );
+      }
+
+      const place = locations[0];
+
+      const weatherUrl =
+        `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}` +
+        `&longitude=${place.longitude}` +
+        `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m` +
+        `&timezone=Asia%2FKolkata`;
+
+      const weatherResponse = await fetch(weatherUrl);
+      if (!weatherResponse.ok) throw new Error("Weather service is unavailable.");
+
+      const data = await weatherResponse.json();
+      const current = data.current;
+
+      document.getElementById("placeName").textContent =
+        block + " – " + place.name;
+
+      document.getElementById("temperature").textContent =
+        Math.round(current.temperature_2m) + "°C";
+
+      document.getElementById("weatherCondition").textContent =
+        weatherDescriptions[current.weather_code] || "Weather information available";
+
+      document.getElementById("feelsLike").textContent =
+        Math.round(current.apparent_temperature) + "°C";
+
+      document.getElementById("humidity").textContent =
+        current.relative_humidity_2m + "%";
+
+      document.getElementById("rainfall").textContent =
+        current.precipitation + " mm";
+
+      document.getElementById("wind").textContent =
+        current.wind_speed_10m + " km/h";
+
+      document.getElementById("updated").textContent =
+        "Weather time: " + current.time.replace("T", " ") +
+        " (India time)";
+
+      card.style.display = "block";
+      status.textContent = "Weather information loaded successfully.";
+
+    } catch (error) {
+      status.textContent = error.message +
+        " Check your internet connection or try again.";
+    }
+  }
+
+  document.getElementById("checkWeather").addEventListener("click", loadWeather);
+</script>
+
+</body>
+</html>

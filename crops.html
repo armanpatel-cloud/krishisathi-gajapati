@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Information | KrishiSathi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f7faf6;
+            color: #193b2b;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px #0000000d;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #187343;
+        }
+
+        .logo span {
+            color: #e69b28;
+        }
+
+        .back {
+            color: #187343;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 65px 7%;
+            background: #e8f5e9;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 43px);
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #617568;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .container {
+            padding: 55px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #78877d;
+        }
+
+        .crop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .crop-card {
+            background: white;
+            border: 1px solid #e7eee6;
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.2s;
+        }
+
+        .crop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px #0000000d;
+        }
+
+        .crop-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .crop-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .crop-card p {
+            color: #718075;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .crop-tag {
+            display: inline-block;
+            background: #eaf5eb;
+            color: #187343;
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .notice {
+            margin-top: 35px;
+            background: #fff8e8;
+            border-left: 4px solid #e69b28;
+            padding: 18px;
+            border-radius: 8px;
+            color: #66512c;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #153d29;
+            color: white;
+            text-align: center;
+            padding: 28px;
+        }
+
+        footer p {
+            color: #c4d5c9;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 800px) {
+            .crop-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .hero, .container {
+                padding: 40px 5%;
+            }
+
+            .crop-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Krishi<span>Sathi</span></a>
+        <a href="index.html" class="back">← Back to Home</a>
+    </header>
+
+    <section class="hero">
+        <h1>🌾 Crop Information Centre</h1>
+        <p>
+            Explore useful information about major crops grown
+            in Gajapati district, Odisha. Learn about crop types,
+            cultivation and scientific farming practices.
+        </p>
+    </section>
+
+    <main class="container">
+
+        <div class="section-title">
+            <h2>Explore Major Crops</h2>
+            <p>Select a crop category to learn more about it.</p>
+        </div>
+
+        <div class="crop-grid">
+
+            <div class="crop-card">
+                <div class="crop-icon">🌾</div>
+                <h3>Rice</h3>
+                <p>Learn about rice cultivation, nursery management, transplanting and crop care.</p>
+                <span class="crop-tag">Cereal Crop</span>
+            </div>
+
+            <div class="crop-card">
+                <div class="crop-icon">🌽</div>
+                <h3>Maize</h3>
+                <p>Explore maize varieties, land preparation, sowing and crop management.</p>
+                <span class="crop-tag">Cereal Crop</span>
+            </div>
+
+            <div class="crop-card">
+                <div class="crop-icon">🫘</div>
+                <h3>Pulses</h3>
+                <p>Understand the cultivation of green gram, black gram and pigeon pea.</p>
+                <span class="crop-tag">Pulse Crops</span>
+            </div>
+
+            <div class="crop-card">
+                <div class="crop-icon">🌿</div>
+                <h3>Millets</h3>
+                <p>Discover finger millet, pearl millet and other nutritious small millets.</p>
+                <span class="crop-tag">Nutri-Cereals</span>
+            </div>
+
+            <div class="crop-card">
+                <div class="crop-icon">🥜</div>
+                <h3>Groundnut</h3>
+                <p>Learn about groundnut sowing, nutrient management and harvesting.</p>
+                <span class="crop-tag">Oilseed Crop</span>
+            </div>
+
+            <div class="crop-card">
+                <div class="crop-icon">🥬</div>
+                <h3>Vegetables</h3>
+                <p>Explore vegetable production, nursery raising and plant protection.</p>
+                <span class="crop-tag">Horticultural Crops</span>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            <strong>Important farming note:</strong>
+            Crop recommendations, varieties, fertilizer doses and
+            plant-protection advice will be added using verified
+            OUAT, ICAR and Odisha Agriculture Department sources.
+            Always follow locally recommended practices.
+        </div>
+
+    </main>
+
+    <footer>
+        <h2>🌱 KrishiSathi – Gajapati</h2>
+        <p>Connecting Farmers, Empowering Agriculture.</p>
+        <p>© 2026 KrishiSathi. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
